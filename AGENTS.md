@@ -10,7 +10,7 @@
 
 | 设备 / 资源 | 连接或所在位置 | 当前可用状态 | 与任务有关的限制 |
 |---|---|---|---|
-| microduck 实机（方案 B，飞特 HD-1910） | 待确认（装机完成后填写实际存放/联网方式） | 待组装——已确定 BOM 和主控板选型，尚未完成下单确认/收货/组装 | 组装完成前不要假设存在可操作的实机；进度以 [方案 B 文档](docs/scheme-b-feetech/README.md#当前进度) 为准 |
+| microduck 实机（飞特 HD-1910 版） | 待确认（装机完成后填写实际存放/联网方式） | 待组装——已确定 BOM 和主控板选型，尚未完成下单确认/收货/组装 | 组装完成前不要假设存在可操作的实机；进度以 [复现记录](docs/build/README.md#当前进度) 为准 |
 
 ## 执行与验证
 
@@ -24,7 +24,8 @@
 - 如果已有 CODEBASE_MAP.md，修改前先用它定位目录与职责，不凭猜测改文件；目录或职责变化时同步更新它。
 - 仅在已采用 TODO.md 时同步任务级进度；没有 TODO 时，当前任务进度保存在 PLAN。
 - 本仓库计划开源传播，面向其他复刻者；仓库本身采用 [CC BY-NC-SA 4.0](LICENSE)（非商业、署名、相同方式共享），与多个上游 CAD/固件资料的授权方式保持一致。引用/转录第三方仓库内容时在对应文档标注来源，不替换为本仓库的许可声明。
-- `docs/scheme-a-dynamixel/` 是未亲身实践的调研整理，新增内容须明确标注信息来源，不得写成已验证的实践结论；`docs/scheme-b-feetech/` 是本仓库的实际实践记录，只写已确认发生的事实，计划中的步骤放在“当前进度”的未勾选项里。
+- 收录范围只限 microduck；配置细节只覆盖作者实际复现的 fanhao375/microduck-replica HD-1910 版（以实际购买为准），README 与 docs 的层次、两张仓库表同步等内容约定见 [CODEBASE_MAP.md](CODEBASE_MAP.md#内容层次约定)。
+- `docs/build/` 是本仓库的实际复现记录，只写已确认发生的事实，计划中的步骤放在“当前进度”的未勾选项里；未核实的型号标“待确认”，不以猜测代替。
 
 ## Git 提交约定
 
@@ -44,7 +45,5 @@
 
 - [LICENSE](LICENSE) —— CC BY-NC-SA 4.0
 - [CODEBASE_MAP.md](CODEBASE_MAP.md) —— 目录结构与各部分职责
-- [docs/scheme-a-dynamixel/README.md](docs/scheme-a-dynamixel/README.md) —— 官方 Dynamixel 路线调研（未亲身实践）
-- [docs/scheme-b-feetech/README.md](docs/scheme-b-feetech/README.md) —— 飞特 HD-1910 路线，本仓库实际采用的方案
-- [docs/shared/mainboard-and-servo-options.md](docs/shared/mainboard-and-servo-options.md) —— 主控板/舵机通用选型对比
-- [awesome/README.md](awesome/README.md) —— awesome-microduck 资源合集
+- [docs/build/README.md](docs/build/README.md) —— 复现记录：配置清单详解、采购信息、装机进度
+- [awesome/README.md](awesome/README.md) —— awesome-microduck：microduck 硬件复现仓库列表
