@@ -13,7 +13,7 @@
 ## 主要参考仓库
 
 - [fanhao375/microduck-replica](https://github.com/fanhao375/microduck-replica) —— 本复现的主要依据，BOM、硬件拆解文档、执行器选型说明均在此
-- [fanhao375/microduck-replica-cad](https://github.com/fanhao375/microduck-replica-cad) —— 3D 打印件 / PCB CAD 源文件，由社区贡献者"机械行者Robo"维护，配套 B 站装配教程
+- [fanhao375/microduck-replica-cad](https://github.com/fanhao375/microduck-replica-cad) —— 3D 打印件 / PCB CAD 源文件，由社区贡献者"机械行者Robo"维护，配套 B 站装配教程；其[飞特版装配采购清单](https://github.com/fanhao375/microduck-replica-cad/blob/master/BOM/README.md)（2026-11-02）含轴承、螺丝具体规格与淘宝实链，机械件补购可参考
 - 上游参考：[pollen-robotics/microduck](https://github.com/pollen-robotics/microduck)（官方硬件设计）、[Rhoban/bam](https://github.com/Rhoban/bam)（执行器建模方法论）
 
 ## 配置清单详解
@@ -82,8 +82,8 @@
 | 物料 | 数量 | 搜索关键词 | 说明 |
 |---|---|---|---|
 | 3D 打印结构件（带轮滑） | 1 套 | — | PLA 为主，含 TPU 软嘴/轮胎件；打印件清单见 [CAD 仓库](https://github.com/fanhao375/microduck-replica-cad) |
-| 轴承 | 22（11 大 + 3 小 + 8 滑轮） | 22×16×4 / 15×10×3 轴承 | 上游 BOM 尺寸：Ø22×16×4 ×11、Ø15×10×3 ×3，到货核对；8 个滑轮轴承尺寸待确认 |
-| 螺丝包 | 1 套 | — | 上游 BOM 以 M2 系列为主（含 M2.5×6），到货核对 |
+| 轴承 | 22（11 大 + 3 小 + 8 滑轮，套餐方描述） | Ø16×22×4（大）、Ø10×15×3（小）、Ø6×12×3 轮滑鞋轴承（滑轮用） | [飞特版装配采购清单](https://github.com/fanhao375/microduck-replica-cad/blob/master/BOM/README.md)（2026-11-02）列的是 11 大 + 3 小 + **4** 滑轮轴承，和套餐方描述的 8 个滑轮轴承数量对不上，到货清点实际数量和尺寸 |
+| 螺丝包 | 1 套 | 自攻螺丝（平尾）：M2×5 / M2×6 / M2×8 / M2.5×6 / M2.5×8，打印孔直接自攻，不是攻丝+螺母或热熔螺母方案 | 同上「装配采购清单」飞特版条目；金属对接处（如舵机输出轴）另配乐泰 243 螺纹胶防松，到货核对实际配比 |
 
 ### 线材
 
