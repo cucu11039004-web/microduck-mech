@@ -56,6 +56,7 @@ Pollen Robotics（Hugging Face 旗下机器人公司）2026 年推出官方开�
 | 文档 | 用途 |
 |---|---|
 | [docs/build/README.md](docs/build/README.md) | 复现记录：配置清单详解、采购信息、装机进度、开放问题 |
+| [docs/build/wiring.md](docs/build/wiring.md) | 电气连接与上电顺序：到货核对、连接示意图、各口脚序、微雪板标 ID、第一次上电清单 |
 | [awesome/README.md](awesome/README.md) | awesome-microduck：microduck 硬件复现仓库列表（与上方速览一致） |
 | [CODEBASE_MAP.md](CODEBASE_MAP.md) | 目录结构与各部分职责，定位改动区域 |
 | [AGENTS.md](AGENTS.md) | 工作环境、资源、协作与 Git 提交约定 |

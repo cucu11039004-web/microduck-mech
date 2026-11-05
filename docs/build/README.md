@@ -39,30 +39,30 @@
 
 | 物料 | 数量 | 搜索关键词 | 购买价 | 说明 |
 |---|---|---|---|---|
-| 飞特 HD-1910（HD-1910-C001） | 15 | 飞特 HD-1910 / HD1901M / HD-1910-C001 开源小鸭舵机 | 含在套餐内；单买零售约 ¥95-120/个（2026-11 调研） | 命名不统一，下单前核对规格书；不是 STS3215 |
+| 飞特 HD-1910（HD-1910-C001） | 15 | 飞特 HD-1910 / HD1901M / HD-1910-C001 开源小鸭舵机 | 含在套餐内；单买零售约 ¥95-120/个（2026-11 调研） | 到货标签 `HD1910M`，与规格书 HD-1910-C001 是同一款；不是 STS3215 |
 
 ### 电路板
 
 | 物料 | 数量 | 搜索关键词 | 说明 |
 |---|---|---|---|
-| HAT 扩展板 | 1 | 型号待确认（到货后核对丝印/标签） | 推测对应上游 RPI Robot HAT（到货核对），元件级 BOM 见 [fanhao375 BOM.md](https://github.com/fanhao375/microduck-replica/blob/master/BOM.md) |
-| Hub 分线板 | 1 | 型号待确认（到货后核对丝印/标签） | |
-| 微雪舵机控制板 | 1 | Waveshare Bus Servo Adapter (A) | 驱动 HD-1910 舵机总线 |
+| HAT 扩展板 | 1 | Pollen RPI Robot HAT | 到货丝印 `elec_RPI_Robot_HAT ASE01187-D1`，即官方开源 [elec_RPI_Robot_HAT](https://github.com/pollen-robotics/elec_RPI_Robot_HAT) D1 版；40 针排母未焊，需自配 2×20 排母；元件级 BOM 见 [fanhao375 BOM.md](https://github.com/fanhao375/microduck-replica/blob/master/BOM.md) |
+| Hub 分线板（含电池转接板） | 1 | dxl_hub / banana_pcb | 到货丝印 `dxl_hub 0.2` + `banana_pcb 0.2`，[Scienceche/microduck-community-kit](https://github.com/Scienceche/microduck-community-kit) 设计；接口脚序与接法见 [电气连接](wiring.md) |
+| 微雪舵机控制板 | 1 | Waveshare Bus Servo Adapter (A) | 电脑上给舵机标 ID、单颗试机用，装机后不参与运行；舵机口电压直接等于 DC 座输入，见 [电气连接](wiring.md#微雪控制板标-id) |
 
 ### 传感器
 
 | 物料 | 数量 | 搜索关键词 | 说明 |
 |---|---|---|---|
-| IMU 姿态模块 | 1 | 型号待确认（到货后核对芯片丝印） | |
+| IMU 姿态模块 | 1 | imu_to_dxl 总线 IMU 板 | 到货丝印 `IMU_TO_DXL V1.0A`（fanhao375 [新版总线 IMU 板](https://github.com/fanhao375/microduck-replica/blob/master/hardware/新版/README.md)，STM32G031 + LSM6DSV16X），挂舵机总线 ID 200，不走 I²C；固件版本待确认 |
 | IMX219 摄像头模块（160° 广角 + 排线） | 1 | IMX219 160度 广角摄像头 | 纯走路 sim2real 可先不装 |
-| VL53L8CX ToF 模块 | 1 | VL53L8CX | 纯走路 sim2real 可先不装；替代选项见[开放问题](#开放问题--待确认) |
+| VL53L8CX ToF 模块 | 1 | VL53L8CX | 到货为 6 针排针分线板，芯片丝印待核对；接 HAT 黄色 IO2/3 口。纯走路 sim2real 可先不装；替代选项见[开放问题](#开放问题--待确认) |
 
 ### 电源
 
 | 物料 | 数量 | 搜索关键词 | 说明 |
 |---|---|---|---|
 | NP-F550 电池 | 1 | 索尼 NP-F550 | 2S 7.4V |
-| 电源适配器 | 1 | 规格待确认（到货后核对电压/电流） | |
+| 电源适配器 | 1 | 随微雪板发货，DC 5.5×2.1 | 输出电压**待核对标签**：HD-1910 上限 8.4 V，12 V 适配器不能接舵机，见 [电气连接](wiring.md#供电与上电关机顺序) |
 
 ### 交互
 
@@ -102,14 +102,20 @@
 
 调试工具：飞特 URT2 调试板（配置舵机 ID、波特率等参数，可多机复用），对应 Dynamixel 生态里 U2D2 的角色。
 
+## 电气连接
+
+各板怎么接、上电与关机顺序、微雪板标 ID 步骤和第一次上电核对清单见 [电气连接与上电顺序](wiring.md)，附连接示意图 [assets/wiring.svg](assets/wiring.svg)。一句话：电池经 banana_pcb 进 hub，hub 把电池原压和舵机总线分给 HAT、两条腿和 IMU 板；瑞莎的 5 V 由 HAT 降压后经 40 针供给，运行时不插 USB-C。
+
 ## 当前进度
 
 - [x] 确定路线：飞特 HD-1910 版，参考 fanhao375/microduck-replica
 - [x] 确定散件套餐（淘宝汇总方案，不含主控）
 - [x] 确定主控板型号：Radxa Zero 3W，2G 内存 / 不含 eMMC
-- [ ] 下单 / 付款状态：**待补充确认**（含散件套餐价格）
-- [ ] 收货
-- [ ] 到货核对：补齐配置清单中标“待确认”的型号（HAT、Hub、IMU、电源适配器、扬声器、滑轮轴承）
+- [x] 下单（2026-11；散件套餐价格仍待补充）
+- [x] 收货（2026-11，散件套餐与主控均已到）
+- [x] 到货核对（电路板）：HAT / Hub / IMU / 舵机按丝印核对，见 [电气连接 · 到货核对](wiring.md#到货核对)
+- [ ] 到货核对（其余）：电源适配器电压、扬声器型号、ToF 芯片、线材插头规格、滑轮轴承数量与尺寸
+- [ ] 焊 HAT 的 2×20 排母，电路在桌上摆开跑通（先于机械组装），步骤见 [第一次上电核对清单](wiring.md#第一次上电核对清单)
 - [ ] 组装（机械结构）
 - [ ] 上电 / 舵机 ID 配置与测试
 - [ ] 固件烧录、IMU/舵机总线联调
@@ -123,3 +129,5 @@
 2. `fanhao375/microduck-replica` 的软件更新频率很高（几乎每天），建议入手时就固定一个明确标注验证过的 release/commit，装机过程中不要跟着滚动更新走，避免中途被打断。
 3. 许可限制：固件镜像"仅供个人非商业复刻"，CAD 为 CC BY-NC-SA（非商业）。本仓库记录的是个人/研究用途的复刻过程，如果后续有商业化想法需要重新评估授权。
 4. ToF 模块选型：本套餐选的是 VL53L8CX；`fanhao375` 主仓另有一份采购清单推荐 VL53L5CX（更小、更好装），两者固件都支持，到货后根据外壳实际适配情况再决定是否更换。
+5. 随微雪板的电源适配器输出电压未核对：这块板本是给 12 V 舵机设计的，若为 12 V 则只能空转，不能接 HD-1910，标 ID 改用 5 V USB 转 DC 线或 7.4 V 电源。
+6. HAT 到货未焊 40 针排母，套餐是否附带待查；没有就自购 2.54 mm 2×20 排母，高度按 [CAD 仓库](https://github.com/fanhao375/microduck-replica-cad) 的叠层间距核对。

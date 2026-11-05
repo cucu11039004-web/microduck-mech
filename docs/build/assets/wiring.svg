@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="830" viewBox="0 0 1240 830" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="13">
+  <style>
+    .box { fill: #ffffff; stroke: #333; stroke-width: 1.5; rx: 6; }
+    .board { fill: #eef5ee; stroke: #2e7d32; stroke-width: 1.8; rx: 6; }
+    .opt { fill: #fafafa; stroke: #888; stroke-width: 1.2; stroke-dasharray: 5 4; rx: 6; }
+    .servo { fill: #fff8e1; stroke: #b26a00; stroke-width: 1.4; rx: 4; }
+    .port { fill: #fff; stroke: #333; stroke-width: 1.2; }
+    .pwr { stroke: #c62828; stroke-width: 4; fill: none; }
+    .bus { stroke: #1565c0; stroke-width: 2.5; fill: none; }
+    .sig { stroke: #777; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
+    .t { fill: #222; }
+    .h { fill: #222; font-weight: bold; font-size: 14px; }
+    .s { fill: #555; font-size: 11.5px; }
+    .warn { fill: #c62828; font-weight: bold; }
+    .title { fill: #222; font-weight: bold; font-size: 18px; }
+  </style>
+  <rect x="0" y="0" width="1240" height="830" fill="#ffffff"/>
+
+  <text class="title" x="620" y="32" text-anchor="middle">microduck 飞特 HD-1910 版 · 电气连接示意图（第一版，整理自上游原理图与到货实物，尚未实测）</text>
+
+  <!-- ===== 左列：电池 → banana_pcb → dxl_hub ===== -->
+  <rect class="box" x="60" y="100" width="190" height="60"/>
+  <text class="h" x="155" y="124" text-anchor="middle">NP-F550 电池（2S）</text>
+  <text class="s" x="155" y="146" text-anchor="middle">满电 8.4 V · 空 6.6 V · 无开关，插上即开机</text>
+
+  <path class="pwr" d="M155 160 V210"/>
+  <text class="s" x="165" y="190">香蕉头插电池触点</text>
+
+  <rect class="board" x="60" y="210" width="190" height="50"/>
+  <text class="h" x="155" y="231" text-anchor="middle">banana_pcb 0.2</text>
+  <text class="s" x="155" y="250" text-anchor="middle">电池转接小板，注意 + 极标记</text>
+
+  <path class="pwr" d="M155 260 V345"/>
+  <text class="s" x="165" y="300">红黑线，到货已焊好</text>
+  <text class="s" x="165" y="316">正常运行 3–5 A，别换细线</text>
+
+  <rect class="board" x="40" y="345" width="230" height="290"/>
+  <text class="h" x="155" y="367" text-anchor="middle">dxl_hub 0.2（躯干）</text>
+  <text class="s" x="52" y="388">+ / − 焊盘 ← 电池，板上 1000 µF 电容</text>
+  <text class="s" x="52" y="405">所有口并联：DATA / +BATT / GND</text>
+  <text class="s" x="52" y="422">中间脚一律是 V = 电池原压</text>
+  <!-- hub 端口 -->
+  <rect class="port" x="262" y="433" width="20" height="14"/>
+  <text class="s" x="256" y="444" text-anchor="end">EH 2.5 口（接 HAT）→</text>
+  <rect class="port" x="262" y="473" width="20" height="14"/>
+  <text class="s" x="256" y="484" text-anchor="end">2.0 口（左腿）→</text>
+  <rect class="port" x="262" y="523" width="20" height="14"/>
+  <text class="s" x="256" y="534" text-anchor="end">2.0 口（右腿）→</text>
+  <rect class="port" x="262" y="580" width="20" height="14"/>
+  <text class="s" x="256" y="591" text-anchor="end">2.0 口，背面（IMU）→</text>
+  <text class="s" x="52" y="612">EH 2.5 口脚序 1·2·3 = GND · V · DATA</text>
+  <text class="s" x="52" y="627">2.0 口脚序 1·2·3 = DATA · V · GND</text>
+
+  <!-- hub EH 口 → HAT J13 -->
+  <path class="bus" d="M282 440 H400 V150 H420"/>
+  <text class="s" x="300" y="434">EH 2.5 长线，过脖子</text>
+  <text class="s" x="300" y="456">两端同向，中间脚 V</text>
+
+  <!-- hub 2.0 口 → 左腿 / 右腿 / IMU -->
+  <path class="bus" d="M282 480 H880"/>
+  <text class="s" x="300" y="475">2.0 同向线</text>
+  <path class="bus" d="M282 530 H880"/>
+  <text class="s" x="300" y="525">2.0 同向线</text>
+  <path class="bus" d="M282 587 H880"/>
+  <text class="s" x="300" y="582">2.0 同向线</text>
+
+  <!-- ===== 中列：HAT 叠 Radxa ===== -->
+  <rect class="board" x="430" y="70" width="300" height="210"/>
+  <text class="h" x="580" y="92" text-anchor="middle">HAT · Pollen elec_RPI_Robot_HAT D1（头部）</text>
+  <text class="s" x="444" y="114">+BATT → AP63205 降压 → 5 V → 40 针给主控</text>
+  <text class="s" x="444" y="131">DATA → 半双工方向电路 → UART2 = /dev/ttyS2</text>
+  <rect class="port" x="420" y="143" width="20" height="14"/>
+  <text class="s" x="446" y="154">J13 白色 3 针 TTL（GND·V·DATA）</text>
+  <rect class="port" x="720" y="143" width="20" height="14"/>
+  <text class="s" x="716" y="172" text-anchor="end">J14 白色 3 针 TTL，与 J13 并联</text>
+  <rect class="port" x="720" y="195" width="20" height="14"/>
+  <text class="s" x="716" y="206" text-anchor="end">IO2/3 黄色小口 = J5 I2C3（GND·3V3·SDA·SCL）</text>
+  <rect class="port" x="720" y="251" width="20" height="14"/>
+  <text class="s" x="716" y="262" text-anchor="end">Speak. → 喇叭</text>
+  <text class="warn" x="444" y="232">J3 / J11 白色 4 针 = RS-485，✗ 不接</text>
+  <text class="s" x="444" y="268">板载 IMU、codec：不用管</text>
+
+  <!-- 40 针 -->
+  <rect x="430" y="280" width="300" height="30" fill="#ddd" stroke="#333" stroke-width="1"/>
+  <text class="s" x="580" y="299" text-anchor="middle">40 针排针 / 排母 · HAT 侧排母到货未焊，需自配 2×20 排母</text>
+
+  <rect class="board" x="430" y="310" width="300" height="90"/>
+  <text class="h" x="580" y="332" text-anchor="middle">Radxa Zero 3W（头部）</text>
+  <text class="s" x="444" y="352">microSD ← 烧好的复刻镜像</text>
+  <text class="s" x="444" y="369">MIPI CSI → 摄像头，排线两端触点面要核对</text>
+  <text class="warn" x="444" y="388">USB-C 5 V 充电头：HAT 供电时 ✗ 不插</text>
+  <rect class="port" x="720" y="358" width="20" height="14"/>
+
+  <!-- 可选外设 -->
+  <path class="sig" d="M740 202 H770"/>
+  <rect class="opt" x="770" y="185" width="104" height="34"/>
+  <text class="s" x="822" y="200" text-anchor="middle">ToF 模块</text>
+  <text class="s" x="822" y="214" text-anchor="middle">VIN·GND·SDA·SCL</text>
+  <path class="sig" d="M740 258 H770"/>
+  <rect class="opt" x="770" y="243" width="104" height="30"/>
+  <text class="s" x="822" y="262" text-anchor="middle">喇叭（可选）</text>
+  <path class="sig" d="M740 365 H770"/>
+  <rect class="opt" x="770" y="348" width="104" height="34"/>
+  <text class="s" x="822" y="363" text-anchor="middle">IMX219 摄像头</text>
+  <text class="s" x="822" y="377" text-anchor="middle">（可选）</text>
+
+  <!-- HAT J14 → 头颈链 -->
+  <path class="bus" d="M740 150 H860 V130 H880"/>
+  <text class="s" x="748" y="144">2.5→2.0 转接线</text>
+  <text class="s" x="748" y="162">两端脚序相反，线是交叉的</text>
+
+  <!-- ===== 右列：舵机链 ===== -->
+  <text class="s" x="880" y="98">头颈 5 颗：从 HAT J14 出发，用舵机的第二个口串下一颗</text>
+  <g>
+    <rect class="servo" x="880" y="110" width="56" height="40"/>
+    <text class="t" x="908" y="126" text-anchor="middle">34</text><text class="s" x="908" y="142" text-anchor="middle">嘴</text>
+    <path class="bus" d="M936 130 H944"/>
+    <rect class="servo" x="944" y="110" width="56" height="40"/>
+    <text class="t" x="972" y="126" text-anchor="middle">33</text><text class="s" x="972" y="142" text-anchor="middle">头 roll</text>
+    <path class="bus" d="M1000 130 H1008"/>
+    <rect class="servo" x="1008" y="110" width="56" height="40"/>
+    <text class="t" x="1036" y="126" text-anchor="middle">32</text><text class="s" x="1036" y="142" text-anchor="middle">头 yaw</text>
+    <path class="bus" d="M1064 130 H1072"/>
+    <rect class="servo" x="1072" y="110" width="56" height="40"/>
+    <text class="t" x="1100" y="126" text-anchor="middle">31</text><text class="s" x="1100" y="142" text-anchor="middle">头 pitch</text>
+    <path class="bus" d="M1128 130 H1136"/>
+    <rect class="servo" x="1136" y="110" width="56" height="40"/>
+    <text class="t" x="1164" y="126" text-anchor="middle">30</text><text class="s" x="1164" y="142" text-anchor="middle">颈 pitch</text>
+  </g>
+
+  <text class="s" x="880" y="452">左腿 5 颗：从 hub 2.0 口出发</text>
+  <g>
+    <rect class="servo" x="880" y="460" width="56" height="40"/>
+    <text class="t" x="908" y="476" text-anchor="middle">20</text><text class="s" x="908" y="492" text-anchor="middle">髋 yaw</text>
+    <path class="bus" d="M936 480 H944"/>
+    <rect class="servo" x="944" y="460" width="56" height="40"/>
+    <text class="t" x="972" y="476" text-anchor="middle">21</text><text class="s" x="972" y="492" text-anchor="middle">髋 roll</text>
+    <path class="bus" d="M1000 480 H1008"/>
+    <rect class="servo" x="1008" y="460" width="56" height="40"/>
+    <text class="t" x="1036" y="476" text-anchor="middle">22</text><text class="s" x="1036" y="492" text-anchor="middle">髋 pitch</text>
+    <path class="bus" d="M1064 480 H1072"/>
+    <rect class="servo" x="1072" y="460" width="56" height="40"/>
+    <text class="t" x="1100" y="476" text-anchor="middle">23</text><text class="s" x="1100" y="492" text-anchor="middle">膝</text>
+    <path class="bus" d="M1128 480 H1136"/>
+    <rect class="servo" x="1136" y="460" width="56" height="40"/>
+    <text class="t" x="1164" y="476" text-anchor="middle">24</text><text class="s" x="1164" y="492" text-anchor="middle">踝</text>
+  </g>
+
+  <g>
+    <rect class="servo" x="880" y="510" width="56" height="40"/>
+    <text class="t" x="908" y="526" text-anchor="middle">10</text><text class="s" x="908" y="542" text-anchor="middle">髋 yaw</text>
+    <path class="bus" d="M936 530 H944"/>
+    <rect class="servo" x="944" y="510" width="56" height="40"/>
+    <text class="t" x="972" y="526" text-anchor="middle">11</text><text class="s" x="972" y="542" text-anchor="middle">髋 roll</text>
+    <path class="bus" d="M1000 530 H1008"/>
+    <rect class="servo" x="1008" y="510" width="56" height="40"/>
+    <text class="t" x="1036" y="526" text-anchor="middle">12</text><text class="s" x="1036" y="542" text-anchor="middle">髋 pitch</text>
+    <path class="bus" d="M1064 530 H1072"/>
+    <rect class="servo" x="1072" y="510" width="56" height="40"/>
+    <text class="t" x="1100" y="526" text-anchor="middle">13</text><text class="s" x="1100" y="542" text-anchor="middle">膝</text>
+    <path class="bus" d="M1128 530 H1136"/>
+    <rect class="servo" x="1136" y="510" width="56" height="40"/>
+    <text class="t" x="1164" y="526" text-anchor="middle">14</text><text class="s" x="1164" y="542" text-anchor="middle">踝</text>
+  </g>
+  <text class="s" x="880" y="562">右腿 5 颗：从 hub 2.0 口出发（上排左腿，下排右腿）</text>
+
+  <rect class="board" x="880" y="568" width="300" height="44"/>
+  <text class="h" x="1030" y="586" text-anchor="middle">IMU_TO_DXL V1.0A · 总线 ID 200</text>
+  <text class="s" x="1030" y="604" text-anchor="middle">J1 2.0 口（DATA·V·GND）；J3 烧录口别碰</text>
+
+  <!-- ===== 底部：台架 ===== -->
+  <rect class="opt" x="40" y="655" width="620" height="150"/>
+  <text class="h" x="52" y="677">台架：标 ID、单颗试机（装机后不参与运行）</text>
+  <rect class="box" x="60" y="705" width="100" height="44"/>
+  <text class="t" x="110" y="731" text-anchor="middle">电脑</text>
+  <path class="sig" d="M160 727 H230"/>
+  <text class="s" x="195" y="721" text-anchor="middle">USB-C</text>
+  <rect class="board" x="230" y="695" width="210" height="64"/>
+  <text class="h" x="335" y="717" text-anchor="middle">微雪 Bus Servo Adapter (A)</text>
+  <text class="s" x="335" y="735" text-anchor="middle">跳线帽拨 B = USB 模式</text>
+  <text class="s" x="335" y="751" text-anchor="middle">CH343，波特率 1000000</text>
+  <path class="bus" d="M440 727 H530"/>
+  <text class="s" x="485" y="721" text-anchor="middle">AMP2.0 转接线</text>
+  <rect class="servo" x="530" y="705" width="120" height="44"/>
+  <text class="t" x="590" y="723" text-anchor="middle">一次只接 1 颗</text>
+  <text class="s" x="590" y="741" text-anchor="middle">出厂 ID 全是 1</text>
+  <path class="pwr" d="M335 790 V759"/>
+  <text class="s" x="345" y="785">DC 座 ← 5 至 8.4 V；USB 不给舵机供电</text>
+  <text class="warn" x="345" y="801">12 V 适配器 ✗ 禁止接舵机</text>
+
+  <!-- ===== 图例 ===== -->
+  <rect class="box" x="700" y="655" width="500" height="150"/>
+  <text class="h" x="712" y="677">图例</text>
+  <path class="pwr" d="M712 699 H760"/>
+  <text class="t" x="770" y="703">电池电 +BATT / GND，电池原压，不降压</text>
+  <path class="bus" d="M712 727 H760"/>
+  <text class="t" x="770" y="731">舵机总线 3 线 DATA / V / GND，16 个设备并联，顺序无关</text>
+  <path class="sig" d="M712 755 H760"/>
+  <text class="t" x="770" y="759">可选外设 / 信号线，不影响走路</text>
+  <text class="s" x="712" y="783">ID：右腿 10–14，左腿 20–24，颈头嘴 30–34，IMU 板 200。</text>
+  <text class="s" x="712" y="798">来源与待实测项见 docs/build/wiring.md</text>
+</svg>
