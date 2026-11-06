@@ -7,7 +7,7 @@ Microduck 硬件复现仓库：作者本人实际复现（fanhao375/microduck-re
 ## 目录结构
 
 - `README.md` —— 项目总览：背景与目标、按舵机型号的方案对比、配置清单、相关仓库速览、文档入口；不放装机进度这类随进度频繁变化的内容，进度只记在 `docs/build/README.md`
-- `docs/build/` —— 本仓库的实际复现记录：`README.md` 放配置清单详解（搜索关键词、购买价与时间、选型说明）、舵机驱动技术参考、装机进度、开放问题；`wiring.md` 放电气连接与上电顺序（到货核对、各口脚序、微雪板标 ID、第一次上电清单），配图在 `assets/wiring.svg`；更新 BOM、记录装机进展、补充遇到的问题都改这里
+- `docs/build/` —— 本仓库的实际复现记录：`README.md` 放配置清单详解（搜索关键词、购买价与时间、选型说明）、舵机驱动技术参考、装机进度、开放问题；`wiring.md` 放电气连接与上电顺序（到货核对、各口脚序、微雪板标 ID、第一次上电清单），配图在 `assets/`（`wiring.svg` 示意图、`wiring-photos.jpg` 实物总图、`photos/` 到货实拍及编号标注版）；更新 BOM、记录装机进展、补充遇到的问题都改这里
 - `awesome/` —— awesome-microduck：microduck 硬件复现仓库列表，与 README 的“相关仓库速览”是同一张表
 - `AGENTS.md` —— 工作环境与协作约定（Git 提交规范等）
 - `CLAUDE.md` —— 指向 AGENTS.md 的别名，智能体协作约定统一维护在 AGENTS.md

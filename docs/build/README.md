@@ -104,7 +104,7 @@
 
 ## 电气连接
 
-各板怎么接、上电与关机顺序、微雪板标 ID 步骤和第一次上电核对清单见 [电气连接与上电顺序](wiring.md)，附连接示意图 [assets/wiring.svg](assets/wiring.svg)。一句话：电池经 banana_pcb 进 hub，hub 把电池原压和舵机总线分给 HAT、两条腿和 IMU 板；瑞莎的 5 V 由 HAT 降压后经 40 针供给，运行时不插 USB-C。
+各板怎么接、上电与关机顺序、微雪板标 ID 步骤和第一次上电核对清单见 [电气连接与上电顺序](wiring.md)，附连接示意图 [assets/wiring.svg](assets/wiring.svg) 和按到货照片画的[实物连接总图](assets/wiring-photos.jpg)，各板实拍与接口标注在 [assets/photos/](assets/photos/)。一句话：电池经 banana_pcb 进 hub，hub 把电池原压和舵机总线分给 HAT、两条腿和 IMU 板；瑞莎的 5 V 由 HAT 降压后经 40 针供给，运行时不插 USB-C。
 
 ## 当前进度
 
